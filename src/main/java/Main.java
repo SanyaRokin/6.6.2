@@ -47,16 +47,16 @@ public class Main {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(new File("data.xml"));
         Node root = doc.getDocumentElement();
-        NodeList nodeList = doc.getDocumentElement().getChildNodes();
+        NodeList nodeList = root.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (Node.ELEMENT_NODE == node.getNodeType()) {
                 Element element = (Element) node;
-                employees.add(new Employee("ID: " +  element.getElementsByTagName("id").item(0).getTextContent(),
-                    "firstName: " + element.getElementsByTagName("firstName").item(0).getTextContent(),
-                    "lastName: " + element.getElementsByTagName("lastName").item(0).getTextContent(),
-                    "country: " + element.getElementsByTagName("country").item(0).getTextContent(),
-                    "age: " +  element.getElementsByTagName("age").item(0).getTextContent()));
+                employees.add(new Employee(element.getElementsByTagName("id").item(0).getTextContent(),
+                     element.getElementsByTagName("firstName").item(0).getTextContent(),
+                    element.getElementsByTagName("lastName").item(0).getTextContent(),
+                    element.getElementsByTagName("country").item(0).getTextContent(),
+                    element.getElementsByTagName("age").item(0).getTextContent()));
             }
         }
        return employees;
